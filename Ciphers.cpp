@@ -15,10 +15,10 @@ namespace cp9 {
   std::string Caesar::getMessage() { return message; }
 
   void Caesar::encrypt(int key) {
+    if (key < 0 || key >= 25) {
+      throw std::runtime_error("wrong key");
+    }
     for (auto& symb : message) {
-      if (key < 0 || key > 26) {
-        throw std::runtime_error("wrong key");
-      }
       if (!isLetter(symb)) continue;
       char anchor = 'a';
       if (upperCase(symb)) anchor = 'A';
@@ -37,6 +37,21 @@ namespace cp9 {
       if (user_answer.empty()) continue;
       break;
     }
+  }
+
+  void Affine::encrypt(std::pair<int, int> key) {
+    int a = key.first, b = key.second; // y = a * x + b
+    if (a < 0 || b < 0 || b > 25 || b > 25) {
+      throw std::runtime_error("wrong key");
+    }
+    if (a % 2 == 0 || a == 13) {
+      throw std::runtime_error("wrong key for Affine, gcd(a, 26) != 1");
+    }
+    
+  }
+
+  void Affine::decryptProcess() {
+
   }
 
 }
