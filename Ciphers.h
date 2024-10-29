@@ -16,7 +16,11 @@ namespace cp9 { // cipher police
   };
 
   class Affine : public Caesar {
-    void encrypt(std::pair<int, int>);
+  private:
+    void decryptAttempt(std::pair<int, int> key);
+  public:
+    Affine(std::string str);
+    void encrypt(std::pair<int, int> key);
     void decryptProcess();
   };
 }
