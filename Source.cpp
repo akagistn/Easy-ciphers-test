@@ -7,10 +7,10 @@ int main() {
 
   try {
 
-    std::string line = "Dagi slamdagi Slum gagi";
-    cp9::Caesar machine(line);
+    std::string test_string = "Read the following telephonic conversation between rahul and sonu. You have the following conversation with the speaker.";
+    cp9::Caesar machine(test_string);
     machine.encrypt(rand() % 26);
-    std::cout << machine.getMessage() << "\n";
+    machine.decryptProcess();
   }
 
   catch (std::exception exc) {

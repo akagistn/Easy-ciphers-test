@@ -1,4 +1,6 @@
 #include "Ciphers.h"
+#include <iostream>
+#include <string>
 #include <stdexcept>
 
 namespace cp9 {
@@ -14,17 +16,26 @@ namespace cp9 {
 
   void Caesar::encrypt(int key) {
     for (auto& symb : message) {
-      if (!isLetter(symb) && !(symb == ' ')) {
-        throw std::runtime_error("unavailable symbols");
-      }
       if (key < 0 || key > 26) {
         throw std::runtime_error("wrong key");
       }
-      if (symb == ' ') continue;
+      if (!isLetter(symb)) continue;
       char anchor = 'a';
       if (upperCase(symb)) anchor = 'A';
       int shift = symb - anchor;
       symb = anchor + (shift + key) % 26;
+    }
+  }
+
+  void Caesar::decryptProcess() {
+    Caesar machine(message);
+    for (int i = 0; i < 26; ++i) {
+      machine.encrypt(1);
+      std::cout << machine.message << " ~ PRESS ENTER UNTIL IT MAKES SENSE";
+      std::string user_answer;
+      std::getline(std::cin, user_answer);
+      if (user_answer.empty()) continue;
+      break;
     }
   }
 

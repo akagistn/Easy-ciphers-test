@@ -11,5 +11,6 @@ namespace cp9 { // cipher police
     void setMessage(const std::string& str);
     std::string getMessage();
     void encrypt(int key);
+    void decryptProcess();
   };
 }
